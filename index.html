@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SpeedFuel Petrol Bunk</title>
+  <meta name="description" content="SpeedFuel Petrol Bunk in JP Nagar, Bangalore – Check fuel prices, location, available products, and book services online." />
+  <link rel="icon" href="https://www.favicon.cc/logo3d/125236.png" type="image/x-icon" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -89,10 +91,36 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #e3e3e3;
+    }
+
+    #date {
+      text-align: center;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
     @media (max-width: 600px) {
       .container {
         margin: 10px;
         padding: 15px;
+      }
+
+      table {
+        width: 100%;
       }
     }
   </style>
@@ -119,7 +147,6 @@
 
     <div class="section">
       <h2>📍 Location</h2>
-      <!-- Replace this with your actual Google Maps embed link -->
       <iframe 
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2072360875836!2d77.59456691518772!3d12.925689019365288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU1JzMxLjMiTiA3N8KwMzUnNTAuMyJF!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
         allowfullscreen=""
@@ -139,11 +166,12 @@
 
     <div class="section">
       <h2>⛽ Daily Fuel Prices</h2>
-      <ul>
-        <li>Petrol: ₹103.45 / L</li>
-        <li>Diesel: ₹94.23 / L</li>
-        <!-- You can update these daily manually or automate with APIs later -->
-      </ul>
+      <p id="date"></p>
+      <table>
+        <tr><th>Fuel Type</th><th>Price (₹/L)</th></tr>
+        <tr><td>Petrol</td><td>₹103.45</td></tr>
+        <tr><td>Diesel</td><td>₹94.23</td></tr>
+      </table>
     </div>
   </div>
 
@@ -151,5 +179,9 @@
   <a href="https://wa.me/919876543210" class="whatsapp" target="_blank" title="Chat with us on WhatsApp">
     💬
   </a>
+
+  <script>
+    document.getElementById("date").innerText = "Date: " + new Date().toLocaleDateString();
+  </script>
 </body>
 </html>
