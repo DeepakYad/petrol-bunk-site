@@ -6,44 +6,83 @@
   <title>Samay Enterprises</title>
   <meta name="description" content="Petrol Bunk in Gantiganahalli, Bengaluru – Check fuel prices, location, available products, and book services online." />
   <link rel="icon" href="https://www.favicon.cc/logo3d/125236.png" type="image/x-icon" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
+    /* Base styles */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fafafa;
       margin: 0;
       padding: 0;
     }
+    
+    /* Header styling with modern classic teal and beige gradient */
+    .site-header {
+      background: linear-gradient(90deg, #008080, #fdf6ec);
+      padding: 15px 0;
+      text-align: center;
+      color: #fff;
+    }
+    
+    .site-header nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    
+    .site-header nav a:hover {
+      color: #333;
+    }
 
+    /* Container with subtle gradient, shadow, and teal accent */
     .container {
       max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: white;
+      margin: 40px auto;
+      padding: 30px;
+      background: linear-gradient(135deg, #ffffff 0%, #f2f4f8 100%);
       border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      border-top: 5px solid #008080;
     }
-
+    
+    /* Gradient text for the primary header using teal tones */
     h1 {
       text-align: center;
-      color: #2c3e50;
+      font-family: 'Merriweather', serif;
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #008080, #20b2aa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-
+    
+    /* Section headers in teal */
+    h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.8em;
+      color: #008080;
+      margin-bottom: 10px;
+    }
+    
     .address, .section {
       text-align: center;
       margin-bottom: 20px;
       color: #555;
     }
-
+    
     ul {
       list-style: none;
       padding: 0;
     }
-
+    
     ul li {
-      font-size: 1.1em;
+      font-size: 1.2em;
       margin: 8px 0;
     }
-
+    
     iframe {
       width: 100%;
       height: 300px;
@@ -51,74 +90,95 @@
       border-radius: 10px;
       margin-bottom: 20px;
     }
-
+    
     form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       max-width: 500px;
       margin: 0 auto;
     }
-
-    input, textarea, button {
-      padding: 10px;
+    
+    input, textarea {
+      padding: 12px;
       font-size: 1em;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       border-radius: 6px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-
+    
+    input:focus, textarea:focus {
+      border-color: #008080;
+      box-shadow: 0 0 5px rgba(0,128,128,0.5);
+      outline: none;
+    }
+    
     button {
-      background-color: #2980b9;
-      color: white;
+      padding: 12px;
+      font-size: 1.1em;
+      background-color: #008080;
+      color: #fff;
       border: none;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-
+    
     button:hover {
-      background-color: #1e6ba8;
+      background-color: #006666;
     }
-
+    
     .whatsapp {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background-color: #25d366;
       color: white;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-radius: 50%;
       font-size: 22px;
       text-decoration: none;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
-
+    
     table {
       margin: 0 auto;
       border-collapse: collapse;
       width: 80%;
     }
-
+    
     th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      border: 1px solid #ddd;
       text-align: center;
     }
-
+    
     th {
-      background-color: #e3e3e3;
+      background-color: #ffefd5;
+      font-weight: bold;
     }
-
+    
     #date {
       text-align: center;
       color: #777;
       margin-bottom: 10px;
     }
-
+    
+    /* Footer styling */
+    .site-footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+    
     @media (max-width: 600px) {
       .container {
-        margin: 10px;
-        padding: 15px;
+        margin: 20px;
+        padding: 20px;
       }
-
+    
       table {
         width: 100%;
       }
@@ -126,45 +186,65 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- Header with navigation -->
+  <header class="site-header">
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  
+  <!-- Main content container -->
+  <div class="container" id="home">
     <h1>Samay Enterprises</h1>
-
+    
     <div class="address">
-      <p>No. 45, Gantiganahalli, Yelahanka Taluk, Bengaluru – 560064</p>
+      <p>96/2C, Gantiganahalli, Yelahanka Taluk, Bengaluru – 560064</p>
       <p>Contact: +91 9900307928</p>
     </div>
-
-    <div class="section">
-      <h2>🛢️ Products Available:</h2>
+    
+    <div class="section" id="products">
+      <h2>🛢️ Products Available</h2>
       <ul>
-        <li>Petrol</li>
-        <li>Diesel</li>
-        <li>Engine Oil</li>
-        <li>Coolants</li>
-        <li>Lubricants</li>
+        <li>⛽ Petrol</li>
+        <li>🚛 Diesel</li>
+        <li>🛢️ Engine Oil</li>
+        <li>❄️ Coolants</li>
+        <li>⚙️ Lubricants</li>
       </ul>
     </div>
-
-    <div class="section">
+    
+    <div class="section" id="location">
       <h2>📍 Location</h2>
       <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1120.5857711404772!2d77.58168459999999!3d13.1389266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae194a08d11699%3A0xb7d9f3e31de721a!2sSamay%20Enterprises!5e1!3m2!1sen!2sin!4v1747728652523!5m2!1sen!2sin"
-        allowfullscreen=""
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1120.5857711404772!2d77.58168459999999!3d13.1389266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae194a08d11699%3A0xb7d9f3e31de721a!2sSamay%20Enterprises!5e1!3m2!1sen!2sin!4v1747728652523!5m2!1sen!2sin" 
+        allowfullscreen="" 
         loading="lazy">
       </iframe>
     </div>
-
+    
     <div class="section">
       <h2>⛽ Daily Fuel Prices</h2>
       <p id="date"></p>
       <table>
-        <tr><th>Fuel Type</th><th>Price (₹/L)</th></tr>
-        <tr><td>Petrol</td><td>₹103.45</td></tr>
-        <tr><td>Diesel</td><td>₹94.23</td></tr>
+        <tr>
+          <th>Fuel Type</th>
+          <th>Price (₹/L)</th>
+        </tr>
+        <tr>
+          <td>Petrol</td>
+          <td>₹102.92</td>
+        </tr>
+        <tr>
+          <td>Diesel</td>
+          <td>₹90.99</td>
+        </tr>
       </table>
     </div>
     
-    <div class="section">
+    <div class="section" id="contact">
       <h2>📝 Service Booking Form</h2>
       <form action="#" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
@@ -173,14 +253,18 @@
         <button type="submit">Book Now</button>
       </form>
     </div>
-
   </div>
-
+  
   <!-- WhatsApp Contact Button -->
-  <a href="https://wa.me/919900307928" class="whatsapp" target="_blank" title="Chat with us on WhatsApp">
+  <a href="https://wa.me/919900307928" class="whatsapp" target="_blank" rel="noopener" title="Chat with us on WhatsApp">
     💬
   </a>
-
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Samay Enterprises. All Rights Reserved.</p>
+  </footer>
+  
   <script>
     document.getElementById("date").innerText = "Date: " + new Date().toLocaleDateString();
   </script>
