@@ -230,6 +230,9 @@
     <div class="section">
       <h2>⛽ Daily Fuel Prices</h2>
       <p id="date"></p>
+      <button onclick="fetchFuelPrices()" style="margin-bottom: 10px;">
+        Refresh Prices
+      </button>
       <table>
         <tr>
           <th>Fuel Type</th>
@@ -237,21 +240,24 @@
         </tr>
         <tr>
           <td>Petrol</td>
-          <td>₹102.92</td>
+          <td id="petrol-price">Loading...</td>
         </tr>
         <tr>
           <td>Diesel</td>
-          <td>₹90.99</td>
+          <td id="diesel-price">Loading...</td>
         </tr>
       </table>
     </div>
     
     <div class="section" id="contact">
       <h2>📝 Service Booking Form</h2>
-      <form action="#" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="tel" name="phone" placeholder="Phone Number" required />
-        <textarea name="service" placeholder="Service Required (e.g., Engine Oil Change)" required></textarea>
+      <form action="https://formspree.io/f/xovdzjdy" method="POST">
+        <input type="text" name="Name" placeholder="Your Name" required />
+        <input type="tel" name="Phone" placeholder="Phone Number" required />
+        <input type="email" name="Email" placeholder="Your Email" required />
+        <input type="date" name="Preferred Date" required />
+        <input type="time" name="Preferred Time" required />
+        <textarea name="Service" placeholder="Service Required (e.g., Engine Oil Change)" required></textarea>
         <button type="submit">Book Now</button>
       </form>
     </div>
@@ -267,8 +273,84 @@
     <p>&copy; 2025 Samay Enterprises. All Rights Reserved.</p>
   </footer>
   
+  <!-- API Script -->
   <script>
-    document.getElementById("date").innerText = "Date: " + new Date().toLocaleDateString();
+    async function fetchFuelPrices() {
+      // Fallback prices - update these manually as needed
+      const fallbackPrices = {
+        petrol: 101.94,
+        diesel: 87.89
+      };
+
+      const apiHeaders = {
+        'X-RapidAPI-Key': 'a097d84dd1msh4ca32fb583c3c50p13c22bjsnf74f0ea61061',
+        'X-RapidAPI-Host': 'fuel-petrol-diesel-live-price-india.p.rapidapi.com',
+        'City': 'Bangalore'
+      };
+
+      // Update the date
+      const today = new Date().toLocaleDateString('en-IN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      document.getElementById("date").innerText = "As of " + today;
+
+      try {
+        console.log('Fetching fuel prices...');
+        const [petrolResponse, dieselResponse] = await Promise.all([
+          fetch('https://fuel-petrol-diesel-live-price-india.p.rapidapi.com/petrol_price_india_city_value/', {
+            method: 'GET',
+            headers: apiHeaders
+          }),
+          fetch('https://fuel-petrol-diesel-live-price-india.p.rapidapi.com/diesel_price_india_city_value/', {
+            method: 'GET',
+            headers: apiHeaders
+          })
+        ]);
+
+        if (!petrolResponse.ok || !dieselResponse.ok) {
+          throw new Error('One or both APIs not available');
+        }
+
+        const petrolData = await petrolResponse.json();
+        const dieselData = await dieselResponse.json();
+
+        // Log the raw API responses
+        console.log('Petrol API Response:', petrolData);
+        console.log('Diesel API Response:', dieselData);
+
+        // Update the UI with live prices
+        document.getElementById("petrol-price").innerText = `₹${petrolData.petrol_price || fallbackPrices.petrol}`;
+        document.getElementById("diesel-price").innerText = `₹${dieselData.diesel_price || fallbackPrices.diesel}`;
+
+      } catch (error) {
+        console.error("API Error:", error);
+        // Using fallback prices
+        document.getElementById("petrol-price").innerText = `₹${fallbackPrices.petrol}`;
+        document.getElementById("diesel-price").innerText = `₹${fallbackPrices.diesel}`;
+      }
+    }
+
+    // Call the function when the page loads
+    fetchFuelPrices();
+    // Refresh prices every hour
+    setInterval(fetchFuelPrices, 3600000);
+  </script>
+
+  <!-- Thank You Message Script -->
+  <script>
+    // Optional: Show a thank you message after submission
+    window.addEventListener("DOMContentLoaded", function() {
+      const form = document.querySelector('form[action^="https://formspree.io"]');
+      if(form) {
+        form.addEventListener("submit", function(e) {
+          setTimeout(function() {
+            form.innerHTML = "<p style='color:green;font-size:1.2em;'>Thank you! Your booking has been received.</p>";
+          }, 100); // Let Formspree process first
+        });
+      }
+    });
   </script>
 </body>
 </html>
